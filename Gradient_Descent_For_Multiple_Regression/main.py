@@ -68,28 +68,6 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
 
     return w, b
 
-    J_history = []
-    w = copy.deepcopy(w_in)  #avoid modifying global w within function
-    b = b_in
-    
-    for i in range(num_iters):
-
-        # Calculate the gradient and update the parameters
-        dj_db,dj_dw = gradient_function(X, y, w, b)   ##None
-
-        # Update Parameters using w, b, alpha and gradient
-        w = w - alpha * dj_dw               ##None
-        b = b - alpha * dj_db               ##None
-      
-        # Save cost J at each iteration
-        if i<100000:      # prevent resource exhaustion 
-            J_history.append( cost_function(X, y, w, b))
-
-        # Print cost every at intervals 10 times or as many iterations if < 10
-        if i% math.ceil(num_iters / 10) == 0:
-            print(f"Iteration {i:4d}: Cost {J_history[-1]:8.2f}   ")
-        
-    return w, b, J_history #return final w,b and J history for graphing
 
 initial_w = np.zeros_like(w_init)
 initial_b = 0.
