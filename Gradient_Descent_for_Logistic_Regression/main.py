@@ -98,3 +98,30 @@ x1 = -b_out/w_out[1]
 ax.plot([0,x0],[x1,0], lw=1)
 
 plt.show()
+
+#reszta nie dziala bo mamy tutaj do czynienia z funkcja dla wielu zmiennych a nie jednej potem do naprawie
+
+x_train = np.array([0., 1, 2, 3, 4, 5])
+y_train = np.array([0,  0, 0, 1, 1, 1])
+
+fig,ax = plt.subplots(1,1,figsize=(4,4))
+
+pos = y_train == 1
+neg = y_train == 0
+
+ax.scatter(x_train[pos], y_train[pos],  s=80, c = 'red', label='y=1')
+ax.scatter(x_train[neg], y_train[neg], marker='o', s=80, label='y=0', facecolors='none', edgecolors='blue')
+
+w_range = np.array([-1, 7])
+b_range = np.array([1, -14])
+
+
+w, b, _ = gradient_descent(x_train, y_train, w_range, b_range, 0.1, 100000)
+
+x0 = -b/w
+x1 = -b/w
+ax.plot(w_range, w_range*x0 + x1, lw=1)
+
+plt.show()
+
+
